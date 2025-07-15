@@ -3,267 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Marketing Portfolio</title>
+    <title>Taha Hassan | Digital Marketer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B00',
+                        secondary: '#FF8C42',
+                        dark: '#1A1A1A',
+                        light: '#F5F5F5'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        html {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
             scroll-behavior: smooth;
         }
-        .hero-bg {
-            background: linear-gradient(135deg, rgba(101,78,163,0.8) 0%, rgba(234,175,200,0.8) 100%);
-        }
+        
         .section-title {
             position: relative;
             display: inline-block;
+            margin-bottom: 2rem;
         }
-        .section-title:after {
+        
+        .section-title::after {
             content: '';
             position: absolute;
-            width: 50%;
-            height: 3px;
             bottom: -8px;
-            left: 25%;
-            background: #7c3aed;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B00, #FF8C42);
+            border-radius: 2px;
         }
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
         }
-        .work-card:hover .work-overlay {
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #FF6B00;
+            z-index: 2;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 8px;
+            width: 2px;
+            height: 100%;
+            background-color: #FF6B00;
+            z-index: 1;
+        }
+        
+        .timeline-item:last-child::after {
+            height: 20px;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #FF6B00, #FF8C42);
+            border-radius: 4px;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.visible {
             opacity: 1;
+            transform: translateY(0);
         }
-        .work-overlay {
-            transition: all 0.3s ease;
+        
+        .hero-pattern {
+            background: radial-gradient(circle, rgba(255,107,0,0.1) 0%, rgba(255,255,255,0) 70%);
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
         }
-        .fade-in {
-            animation: fadeIn 0.8s ease forwards;
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
-        .stat-card:hover {
-            transform: scale(1.05);
+        
+        .cert-badge {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cert-badge::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255,255,255,0.2);
+            transform: rotate(25deg);
+            transition: all 0.6s;
+        }
+        
+        .cert-badge:hover::before {
+            left: 120%;
         }
     </style>
 </head>
-<body class="font-sans bg-gray-50 text-gray-800">
-    <!-- Navigation -->
-    <header class="fixed w-full bg-white shadow-sm z-50">
-        <nav class="container mx-auto px-6 py-3 flex justify-center items-center">
-            <div class="hidden md:flex space-x-8">
-                <a href="#home" class="text-gray-700 hover:text-purple-600 transition">Home</a>
-                <a href="#skills" class="text-gray-700 hover:text-purple-600 transition">Skills</a>
-                <a href="#experience" class="text-gray-700 hover:text-purple-600 transition">Experience</a>
-                <a href="#education" class="text-gray-700 hover:text-purple-600 transition">Education</a>
-                <a href="#works" class="text-gray-700 hover:text-purple-600 transition">Campaigns</a>
-                <a href="#contact" class="text-gray-700 hover:text-purple-600 transition">Contact</a>
+<body class="bg-gray-50">
+    <!-- Header/Navigation -->
+    <header class="fixed w-full z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                    <span class="text-white font-bold text-xl">TH</span>
+                </div>
+                <h1 class="ml-3 text-xl font-bold text-dark">Taha <span class="text-primary">Hassan</span></h1>
             </div>
-            <button class="md:hidden focus:outline-none" id="mobile-menu-button">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
+            
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="#home" class="text-dark hover:text-primary transition">Home</a></li>
+                    <li><a href="#about" class="text-dark hover:text-primary transition">About</a></li>
+                    <li><a href="#education" class="text-dark hover:text-primary transition">Education</a></li>
+                    <li><a href="#experience" class="text-dark hover:text-primary transition">Experience</a></li>
+                    <li><a href="#certifications" class="text-dark hover:text-primary transition">Certifications</a></li>
+                    <li><a href="#projects" class="text-dark hover:text-primary transition">Projects</a></li>
+                </ul>
+            </nav>
+            
+            <button class="md:hidden text-dark">
+                <i class="fas fa-bars text-2xl"></i>
             </button>
-        </nav>
-        <!-- Mobile Menu -->
-        <div class="hidden md:hidden bg-white shadow-lg" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-purple-600">Home</a>
-                <a href="#skills" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-purple-600">Skills</a>
-                <a href="#experience" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-purple-600">Experience</a>
-                <a href="#education" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-purple-600">Education</a>
-                <a href="#works" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-purple-600">Campaigns</a>
-                <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-purple-600">Contact</a>
-            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-bg min-h-screen flex items-center justify-center pt-20 pb-20">
-        <div class="container mx-auto px-6 text-center md:text-left">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0 fade-in">
-                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Hi, I'm <span class="text-purple-200">Taha Hassan</span></h1>
-                    <h2 class="text-2xl md:text-3xl font-semibold text-purple-100 mb-6">Digital Marketing Specialist</h2>
-                    <p class="text-white text-lg mb-8 max-w-lg mx-auto md:mx-0">
-                        I craft data-driven marketing strategies that drive growth and engagement. 
-                        Specializing in SEO, content marketing, and e-commerce strategies to deliver measurable results.
-                    </p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
-                        <a href="#contact" class="px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
-                            Hire Me
-                        </a>
-                        <a href="./taha_CV.pdf" class="px-8 py-3 bg-white text-purple-600 rounded-lg hover:bg-gray-100 transition flex items-center justify-center">
-                            <i class="fas fa-download mr-2"></i> DOWNLOAD CV
-                        </a>
-                    </div>
-                </div>
-                <div class="md:w-1/2 flex justify-center fade-in">
-                    <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1hcmtldGVyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" 
-                             alt="Profile" class="w-full h-full object-cover">
-                    </div>
+    <section id="home" class="pt-24 pb-16 hero-pattern">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0 animate-on-scroll">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 text-dark">
+                    Hi, I'm <span class="text-primary">Taha Hassan</span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-gray-700">
+                    Digital Marketing Professional
+                </h2>
+                <p class="text-lg mb-8 text-gray-600 max-w-lg">
+                    Ambitious Digital Marketer pursuing an MSc in Digital Marketing at the University of West Scotland. Skilled in crafting data-driven campaigns and boosting brand engagement.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#contact" class="px-6 py-3 bg-primary text-white font-medium rounded-full shadow-lg hover:bg-secondary transition transform hover:-translate-y-1">
+                        Contact Me
+                    </a>
+                    <a href="#projects" class="px-6 py-3 bg-white text-primary font-medium rounded-full border-2 border-primary shadow-lg hover:bg-gray-50 transition transform hover:-translate-y-1">
+                        View Projects
+                    </a>
                 </div>
             </div>
-            <div class="mt-16 flex justify-center space-x-6">
-                <a href="https://www.linkedin.com/in/tahahassan12121996" class="text-white hover:text-purple-200 text-2xl transition">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="#" class="text-white hover:text-purple-200 text-2xl transition">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#" class="text-white hover:text-purple-200 text-2xl transition">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="text-white hover:text-purple-200 text-2xl transition">
-                    <i class="fab fa-tiktok"></i>
-                </a>
+            
+            <div class="md:w-1/2 flex justify-center animate-on-scroll">
+                <div class="relative">
+                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                        <div class="w-full h-full bg-gray-200 border-2 border-dashed rounded-xl flex items-center justify-center">
+                            <span class="text-gray-500">Profile Image</span>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 bg-primary text-white py-2 px-4 rounded-full shadow-lg floating">
+                        <span>Available for work</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16 section-title">My Marketing Skills</h2>
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title">About Me</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Digital Marketing Skills -->
-                <div class="bg-gray-50 p-6 rounded-xl shadow-md skill-card transition transform hover:shadow-lg">
-                    <div class="text-purple-600 text-4xl mb-4 flex items-center">
-                        <i class="fas fa-chart-line mr-3"></i>
-                        <h3 class="text-xl font-semibold">Digital Marketing</h3>
-                    </div>
-                    <div class="space-y-4 mt-4">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700">SEO & SEM</span>
-                                <span class="text-gray-600">90%</span>
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/3 animate-on-scroll">
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-dark">Personal Info</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-primary mr-3"></i>
+                                <span>Paisley, UK</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-phone text-primary mr-3"></i>
+                                <span>+44 7728974631</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-envelope text-primary mr-3"></i>
+                                <span>taha96hassan@outlook.com</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fab fa-linkedin text-primary mr-3"></i>
+                                <a href="https://www.linkedin.com/in/tahahassan12121996" target="_blank" class="hover:text-primary transition">LinkedIn Profile</a>
+                            </li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-semibold mt-8 mb-4 text-dark">Skills</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="mb-1">Digital Marketing</p>
+                                <div class="skill-bar">
+                                    <div class="skill-progress w-4/5"></div>
+                                </div>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-purple-600 h-2 rounded-full" style="width: 90%"></div>
+                            <div>
+                                <p class="mb-1">Content Creation</p>
+                                <div class="skill-bar">
+                                    <div class="skill-progress w-3/4"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700">Content Marketing</span>
-                                <span class="text-gray-600">85%</span>
+                            <div>
+                                <p class="mb-1">Social Media Management</p>
+                                <div class="skill-bar">
+                                    <div class="skill-progress w-4/5"></div>
+                                </div>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-purple-600 h-2 rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700">E-Commerce Strategy</span>
-                                <span class="text-gray-600">80%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-purple-600 h-2 rounded-full" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700">Social Media Integration</span>
-                                <span class="text-gray-600">80%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-purple-600 h-2 rounded-full" style="width: 80%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Business & Analytics Skills -->
-                <div class="bg-gray-50 p-6 rounded-xl shadow-md skill-card transition transform hover:shadow-lg">
-                    <div class="text-purple-600 text-4xl mb-4 flex items-center">
-                        <i class="fas fa-chart-pie mr-3"></i>
-                        <h3 class="text-xl font-semibold">Business & Analytics</h3>
-                    </div>
-                    <div class="space-y-4 mt-4">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700">Marketing Analytics</span>
-                                <span class="text-gray-600">85%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-purple-600 h-2 rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700">Business Analytics</span>
-                                <span class="text-gray-600">80%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-purple-600 h-2 rounded-full" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700">Data-Driven Decision Making</span>
-                                <span class="text-gray-600">80%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-purple-600 h-2 rounded-full" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700">Excel for Business</span>
-                                <span class="text-gray-600">85%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-purple-600 h-2 rounded-full" style="width: 85%"></div>
+                            <div>
+                                <p class="mb-1">Data Analytics</p>
+                                <div class="skill-bar">
+                                    <div class="skill-progress w-3/5"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Supply Chain & Management Skills -->
-                <div class="bg-gray-50 p-6 rounded-xl shadow-md skill-card transition transform hover:shadow-lg">
-                    <div class="text-purple-600 text-4xl mb-4 flex items-center">
-                        <i class="fas fa-truck mr-3"></i>
-                        <h3 class="text-xl font-semibold">Supply Chain & Management</h3>
+                
+                <div class="md:w-2/3 animate-on-scroll">
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-dark">Professional Summary</h3>
+                        <p class="mb-6 text-gray-700 leading-relaxed">
+                            Ambitious Digital Marketer pursuing an MSc in Digital Marketing at the University of West Scotland. Skilled in crafting data-driven campaigns, content creation, and social media management to boost brand engagement. Proficient in using digital tools and analytics to drive results, with a passion for innovation and marketing trends.
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold mb-4 text-dark">Career Goals</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Seeking opportunities to apply my expertise in digital marketing strategies and analytics to help organizations enhance their online presence, engage target audiences, and achieve measurable business growth. Passionate about staying at the forefront of digital marketing innovations and trends.
+                        </p>
                     </div>
-                    <div class="space-y-4 mt-4">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700">Supply Chain Management</span>
-                                <span class="text-gray-600">85%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-purple-600 h-2 rounded-full" style="width: 85%"></div>
-                            </div>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                        <div class="bg-primary text-white p-4 rounded-lg text-center shadow-md">
+                            <i class="fas fa-chart-line text-3xl mb-2"></i>
+                            <p>Analytics</p>
                         </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700">Procurement</span>
-                                <span class="text-gray-600">80%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-purple-600 h-2 rounded-full" style="width: 80%"></div>
-                            </div>
+                        <div class="bg-secondary text-white p-4 rounded-lg text-center shadow-md">
+                            <i class="fas fa-hashtag text-3xl mb-2"></i>
+                            <p>Social Media</p>
                         </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700">Inventory Management</span>
-                                <span class="text-gray-600">80%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-purple-600 h-2 rounded-full" style="width: 80%"></div>
-                            </div>
+                        <div class="bg-primary text-white p-4 rounded-lg text-center shadow-md">
+                            <i class="fas fa-search text-3xl mb-2"></i>
+                            <p>SEO</p>
                         </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700">Demand Forecasting</span>
-                                <span class="text-gray-600">80%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-purple-600 h-2 rounded-full" style="width: 80%"></div>
-                            </div>
+                        <div class="bg-secondary text-white p-4 rounded-lg text-center shadow-md">
+                            <i class="fas fa-pen-fancy text-3xl mb-2"></i>
+                            <p>Content</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title">Education</h2>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="timeline-item animate-on-scroll">
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-xl font-bold text-dark">University of West Scotland</h3>
+                            <span class="bg-primary text-white px-3 py-1 rounded-full text-sm">2024-2025</span>
+                        </div>
+                        <p class="text-lg font-semibold text-primary mb-3">M.Sc. Digital Marketing</p>
+                        <p class="text-gray-600 mb-3"><span class="font-medium">Courses:</span> Digital Branding, Digital Marketing Practice, Future Marketing And Transformational Technology</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate-on-scroll">
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-xl font-bold text-dark">Bahria University, Karachi</h3>
+                            <span class="bg-primary text-white px-3 py-1 rounded-full text-sm">2021-2022</span>
+                        </div>
+                        <p class="text-lg font-semibold text-primary mb-3">Master Of Business Administration</p>
+                        <p class="text-gray-600 mb-3"><span class="font-medium">Courses:</span> Inventory Management, Strategic Procurement, Demand Forecasting, Green Supply Chain</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate-on-scroll">
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-xl font-bold text-dark">Bahria University, Karachi</h3>
+                            <span class="bg-primary text-white px-3 py-1 rounded-full text-sm">2017-2021</span>
+                        </div>
+                        <p class="text-lg font-semibold text-primary mb-3">Bachelor in Business Management</p>
+                        <p class="text-gray-600 mb-3"><span class="font-medium">Courses:</span> Sales Management, Procurement, Brand Management, Shipping in SCM, Distribution Management</p>
                     </div>
                 </div>
             </div>
@@ -271,427 +368,357 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16 section-title">My Experience</h2>
+    <section id="experience" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title">Work Experience</h2>
             
-            <div class="space-y-8 max-w-3xl mx-auto">
-                <!-- DHL Global Forwarding -->
-                <div class="p-6 border-l-4 border-purple-600 bg-white rounded-r-lg shadow-md">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <div>
-                            <h3 class="text-xl font-semibold">Officer OMS, DHL Global Forwarding</h3>
-                            <h4 class="text-gray-600">Karāchi, Sindh, Pakistan</h4>
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-12 animate-on-scroll">
+                    <div class="flex items-start">
+                        <div class="bg-primary text-white w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                            <i class="fas fa-briefcase text-xl"></i>
                         </div>
-                        <span class="text-gray-500 mt-2 md:mt-0">Sep 2023 - Aug 2024</span>
+                        <div>
+                            <div class="flex flex-wrap justify-between items-center mb-2">
+                                <h3 class="text-xl font-bold text-dark">DHL Global Forwarding</h3>
+                                <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">2023-2024 / Karachi</span>
+                            </div>
+                            <p class="text-lg font-semibold text-primary mb-3">Officer OMS</p>
+                            <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                                <li>Developed and maintained strong partnerships with numerous carriers, ensuring timely and consistent service</li>
+                                <li>Established and maintained relationships with key business partners, including carriers and vendors</li>
+                                <li>Maintained detailed records of cargo, including weight and volume, for each load</li>
+                            </ul>
+                        </div>
                     </div>
-                    <ul class="mt-4 list-disc list-inside text-gray-600 space-y-2">
-                        <li>Tracked and coordinated shipments, liaising with carriers and customs to ensure timely delivery.</li>
-                        <li>Managed end-to-end order processing, ensuring compliance and accurate invoicing.</li>
-                        <li>Prepared shipping documentation and maintained comprehensive shipment records.</li>
-                        <li>Optimized order management workflows, improving efficiency and reducing errors.</li>
-                    </ul>
                 </div>
-
-                <!-- NZ Enterprises -->
-                <div class="p-6 border-l-4 border-purple-600 bg-white rounded-r-lg shadow-md">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <div>
-                            <h3 class="text-xl font-semibold">Assistant Manager, NZ Enterprises</h3>
-                            <h4 class="text-gray-600">Karāchi, Sindh, Pakistan</h4>
+                
+                <div class="mb-12 animate-on-scroll">
+                    <div class="flex items-start">
+                        <div class="bg-primary text-white w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                            <i class="fas fa-briefcase text-xl"></i>
                         </div>
-                        <span class="text-gray-500 mt-2 md:mt-0">Sep 2022 - Aug 2023</span>
+                        <div>
+                            <div class="flex flex-wrap justify-between items-center mb-2">
+                                <h3 class="text-xl font-bold text-dark">NZ Enterprises</h3>
+                                <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">2022-2023 / Karachi</span>
+                            </div>
+                            <p class="text-lg font-semibold text-primary mb-3">Assistant Manager</p>
+                            <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                                <li>Developed relationships with existing customers and handled customer inquiries professionally</li>
+                                <li>Set key performance indicators to measure success and managed expenses and budgets</li>
+                            </ul>
+                        </div>
                     </div>
-                    <ul class="mt-4 list-disc list-inside text-gray-600 space-y-2">
-                        <li>Coordinated material deliveries to construction sites, ensuring timely supply.</li>
-                        <li>Negotiated with suppliers to secure cost-effective deals and managed purchase orders.</li>
-                        <li>Prepared budgets for procurement and logistics, optimizing costs without compromising quality.</li>
-                    </ul>
                 </div>
-
-                <!-- Worker's Education and Research Organization -->
-                <div class="p-6 border-l-4 border-purple-600 bg-white rounded-r-lg shadow-md">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <div>
-                            <h3 class="text-xl font-semibold">Assistant Manager, Worker's Education and Research Organization</h3>
-                            <h4 class="text-gray-600">Karāchi, Sindh, Pakistan</h4>
+                
+                <div class="animate-on-scroll">
+                    <div class="flex items-start">
+                        <div class="bg-primary text-white w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                            <i class="fas fa-briefcase text-xl"></i>
                         </div>
-                        <span class="text-gray-500 mt-2 md:mt-0">Feb 2021 - Jun 2022</span>
-                    </div>
-                    <ul class="mt-4 list-disc list-inside text-gray-600 space-y-2">
-                        <li>Recommended creative promotional activities to enhance marketing efforts.</li>
-                        <li>Analyzed sales data to forecast sales and generate marketing reports.</li>
-                        <li>Evaluated and improved existing marketing programs for better performance.</li>
-                    </ul>
-                </div>
-
-                <!-- Classic Linen -->
-                <div class="p-6 border-l-4 border-purple-600 bg-white rounded-r-lg shadow-md">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
                         <div>
-                            <h3 class="text-xl font-semibold">Intern, Classic Linen</h3>
-                            <h4 class="text-gray-600">Karachi Division, Sindh, Pakistan</h4>
+                            <div class="flex flex-wrap justify-between items-center mb-2">
+                                <h3 class="text-xl font-bold text-dark">Workers Education & Research Org.</h3>
+                                <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">2021-2022 / Karachi</span>
+                            </div>
+                            <p class="text-lg font-semibold text-primary mb-3">Assistant Manager</p>
+                            <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                                <li>Recommended creative and cost effective promotional activities and generated sales and marketing reports</li>
+                                <li>Analyzed sales data to determine sales forecasts and evaluated current marketing programs to recommend improvements</li>
+                            </ul>
                         </div>
-                        <span class="text-gray-500 mt-2 md:mt-0">Jul 2020 - Aug 2020</span>
                     </div>
-                    <ul class="mt-4 list-disc list-inside text-gray-600 space-y-2">
-                        <li>Supported marketing initiatives and assisted in promotional activities.</li>
-                        <li>Contributed to sales data analysis and marketing strategy development.</li>
-                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section id="education" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16 section-title">Education & Certifications</h2>
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title">Certifications</h2>
             
-            <div class="space-y-8 max-w-3xl mx-auto">
-                <!-- University of the West of Scotland -->
-                <div class="p-6 border-l-4 border-purple-600 bg-gray-50 rounded-r-lg shadow-sm">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <div>
-                            <h3 class="text-xl font-semibold">Master's in Digital Marketing</h3>
-                            <h4 class="text-gray-600">University of the West of Scotland</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="cert-badge animate-on-scroll bg-white p-5 rounded-xl shadow-md hover:shadow-lg transition relative overflow-hidden">
+                    <div class="flex items-start">
+                        <div class="bg-primary bg-opacity-10 text-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 mr-4">
+                            <i class="fas fa-certificate"></i>
                         </div>
-                        <span class="text-gray-500 mt-2 md:mt-0">Sep 2024 - Aug 2025</span>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-1">Marketing Analytics</h3>
+                            <p class="text-gray-600">University of Virginia (Darden School of Business)</p>
+                            <a href="https://www.coursera.org/account/accomplishments/verify/Y6HHVYKUA69Z" target="_blank" class="text-primary text-sm mt-2 inline-block hover:underline">View Certificate</a>
+                        </div>
                     </div>
-                    <ul class="mt-4 list-disc list-inside text-gray-600 space-y-2">
-                        <li>Courses: Digital Branding, Digital Marketing Practice, Future Marketing and Transformational Technology</li>
-                        <li>Skills: Search Engine Optimization (SEO), Web Content Writing, Online Branding</li>
-                        <li>Project: Developed a website for The Leather Jackets, implementing SEO, content marketing, and e-commerce strategies</li>
-                    </ul>
                 </div>
                 
-                <!-- Bahria University (MBA) -->
-                <div class="p-6 border-l-4 border-purple-600 bg-gray-50 rounded-r-lg shadow-sm">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <div>
-                            <h3 class="text-xl font-semibold">MBA, Logistics, Materials, and Supply Chain Management</h3>
-                            <h4 class="text-gray-600">Bahria University</h4>
+                <div class="cert-badge animate-on-scroll bg-white p-5 rounded-xl shadow-md hover:shadow-lg transition relative overflow-hidden">
+                    <div class="flex items-start">
+                        <div class="bg-primary bg-opacity-10 text-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 mr-4">
+                            <i class="fas fa-certificate"></i>
                         </div>
-                        <span class="text-gray-500 mt-2 md:mt-0">2022 - 2023</span>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-1">Google Digital Garage</h3>
+                            <p class="text-gray-600">The fundamentals of digital marketing</p>
+                            <a href="https://www.dropbox.com/scl/fi/qqle73whzcinfsg2ngvzt/GOOGLE-CERTIFICATE.pdf" target="_blank" class="text-primary text-sm mt-2 inline-block hover:underline">View Certificate</a>
+                        </div>
                     </div>
-                    <ul class="mt-4 list-disc list-inside text-gray-600 space-y-2">
-                        <li>Courses: Green Supply Chain Management, Procurement, Demand Forecasting, Inventory Management</li>
-                        <li>Thesis: Supply Chain Performance in Textile Sector of Pakistan</li>
-                        <li>Skills: Inventory Management, Demand Planning, Procurement</li>
-                    </ul>
                 </div>
                 
-                <!-- Bahria University (BBA) -->
-                <div class="p-6 border-l-4 border-purple-600 bg-gray-50 rounded-r-lg shadow-sm">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <div>
-                            <h3 class="text-xl font-semibold">BBA, Business Administration and Management</h3>
-                            <h4 class="text-gray-600">Bahria University</h4>
+                <div class="cert-badge animate-on-scroll bg-white p-5 rounded-xl shadow-md hover:shadow-lg transition relative overflow-hidden">
+                    <div class="flex items-start">
+                        <div class="bg-primary bg-opacity-10 text-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 mr-4">
+                            <i class="fas fa-certificate"></i>
                         </div>
-                        <span class="text-gray-500 mt-2 md:mt-0">2017 - 2021</span>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-1">Excel Skills for Business</h3>
+                            <p class="text-gray-600">Macquarie University Australia</p>
+                            <a href="https://coursera.org/account/accomplishments/verify/XQE3FH4RQ3J2" target="_blank" class="text-primary text-sm mt-2 inline-block hover:underline">View Certificate</a>
+                        </div>
                     </div>
-                    <ul class="mt-4 list-disc list-inside text-gray-600 space-y-2">
-                        <li>Activities: Sports, Class Representative (3rd to 8th Semester), Participant of Marketing Gala</li>
-                        <li>Skills: Teamwork, Management, Marketing, Supply Chain Management, Team Management</li>
-                    </ul>
                 </div>
-
-                <!-- Certifications -->
-                <div class="p-6 border-l-4 border-purple-600 bg-gray-50 rounded-r-lg shadow-sm">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                
+                <div class="cert-badge animate-on-scroll bg-white p-5 rounded-xl shadow-md hover:shadow-lg transition relative overflow-hidden">
+                    <div class="flex items-start">
+                        <div class="bg-primary bg-opacity-10 text-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 mr-4">
+                            <i class="fas fa-certificate"></i>
+                        </div>
                         <div>
-                            <h3 class="text-xl font-semibold">Certifications</h3>
-                            <h4 class="text-gray-600">Various Institutions</h4>
+                            <h3 class="text-lg font-semibold mb-1">Marketing Strategy for Entrepreneurs</h3>
+                            <p class="text-gray-600">Coursera</p>
+                            <a href="https://www.coursera.org/account/accomplishments/verify/H3X24JWC892D" target="_blank" class="text-primary text-sm mt-2 inline-block hover:underline">View Certificate</a>
                         </div>
                     </div>
-                    <ul class="mt-4 list-disc list-inside text-gray-600 space-y-2">
-                        <li><a href="https://www.coursera.org/account/accomplishments/verify/Y6HHVYKUA69Z" class="text-purple-600 hover:underline">Marketing Analytics, University of Virginia (Darden School of Business), Apr 2020</a></li>
-                        <li><a href="https://www.dropbox.com/scl/fi/qqle73whzcinfsg2ngvzt/GOOGLE-CERTIFICATE.pdf?rlkey=yuw6nsi697ds7ixpjw2m4qdbr&st=kwjbc0zj&dl=0" class="text-purple-600 hover:underline">Google Digital Garage (Fundamentals of Digital Marketing), Apr 2020</a></li>
-                        <li><a href="https://coursera.org/account/accomplishments/verify/XQE3FH4RQ3J2" class="text-purple-600 hover:underline">Excel Skills for Business, Macquarie University, Jun 2020</a></li>
-                        <li><a href="https://www.coursera.org/account/accomplishments/verify/H3X24JWC892D" class="text-purple-600 hover:underline">Marketing Strategy for Entrepreneurs, EIT Digital, Sep 2020</a></li>
-                        <li><a href="#" class="text-purple-600 hover:underline">Financial Literacy Training Program, State Bank of Pakistan (SBP), Sep 2020</a></li>
-                        <li><a href="https://www.coursera.org/account/accomplishments/verify/3KQL67LJBXM6" class="text-purple-600 hover:underline">Leading Teams: Developing as a Leader, University of Illinois Urbana-Champaign, Mar 2021</a></li>
-                        <li><a href="#" class="text-purple-600 hover:underline">Life And Career Essential, FranklinCovey, Jan 2021</a></li>
-                        <li><a href="https://www.dropbox.com/scl/fi/b6l05pbex5r6195ja7htw/Image-14.jpg?rlkey=crev2g7ikznjyk6iazd9ib1ki&st=m304r33f&dl=0" class="text-purple-600 hover:underline">Entrepreneurial Master Class, Injaaz Pakistan, Apr 2016</a></li>
-                    </ul>
+                </div>
+                
+                <div class="cert-badge animate-on-scroll bg-white p-5 rounded-xl shadow-md hover:shadow-lg transition relative overflow-hidden">
+                    <div class="flex items-start">
+                        <div class="bg-primary bg-opacity-10 text-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 mr-4">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-1">Leading Teams: Developing as a Leader</h3>
+                            <p class="text-gray-600">University of Illinois Urbana-Champaign</p>
+                            <a href="https://www.coursera.org/account/accomplishments/verify/3KQL67LJBXM6" target="_blank" class="text-primary text-sm mt-2 inline-block hover:underline">View Certificate</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Works Section -->
-    <section id="works" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16 section-title">Marketing Campaigns & Projects</h2>
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title">Projects</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Digital Marketing Practice -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md work-card">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGFzaGJvYXJkfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" 
-                             alt="Project 1" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-purple-600 bg-opacity-75 flex items-center justify-center opacity-0 work-overlay">
-                            <a href="https://theleatherjackets.com.au/" class="text-white font-semibold px-4 py-2 border border-white rounded hover:bg-white hover:text-purple-600 transition">View Project</a>
-                        </div>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="project-card animate-on-scroll bg-gray-50 rounded-xl overflow-hidden shadow-md transition duration-300">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">The Leather Jackets Website Launch</h3>
-                        <p class="text-gray-600 mb-4">Developed a website with SEO, content marketing, and e-commerce strategies</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">
+                            <a href="https://theleatherjackets.com.au/" target="_blank" class="hover:text-primary transition">Digital Marketing Practice</a>
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            Developed a website, implemented SEO, social media marketing, and created engaging content.
+                        </p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">SEO Optimized</span>
-                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">E-Commerce</span>
-                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Social Media</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">SEO</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">Content Creation</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">Social Media</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Future Marketing and Transformational Technology -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md work-card">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWVldGluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit-crop&w=500&q=60" 
-                             alt="Project 2" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-purple-600 bg-opacity-75 flex items-center justify-center opacity-0 work-overlay">
-                            <a href="https://www.thinglink.com/card/1920505707195532132" class="text-white font-semibold px-4 py-2 border border-white rounded hover:bg-white hover:text-purple-600 transition">View Project</a>
-                        </div>
-                    </div>
+                <div class="project-card animate-on-scroll bg-gray-50 rounded-xl overflow-hidden shadow-md transition duration-300">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Future Marketing & Transformational Technology</h3>
-                        <p class="text-gray-600 mb-4">Focused on DARQ technology's role in transforming healthcare</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">
+                            <a href="https://www.thinglink.com/card/1920505707195532132" target="_blank" class="hover:text-primary transition">Future Marketing and Transformational Technology</a>
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            Focused on DARQ technology and its role in transforming the healthcare sector.
+                        </p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">DARQ Technology</span>
-                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Healthcare</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">Technology</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">Research</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">Healthcare</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Digital Branding -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md work-card">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW9iaWxlJTIwYXBwfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" 
-                             alt="Project 3" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-purple-600 bg-opacity-75 flex items-center justify-center opacity-0 work-overlay">
-                            <a href="#" class="text-white font-semibold px-4 py-2 border border-white rounded hover:bg-white hover:text-purple-600 transition">View Project</a>
-                        </div>
-                    </div>
+                <div class="project-card animate-on-scroll bg-gray-50 rounded-xl overflow-hidden shadow-md transition duration-300">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Digital Branding</h3>
-                        <p class="text-gray-600 mb-4">Analyzed Revolut's Brand Identity Prism and brand extension</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Digital Branding</h3>
+                        <p class="text-gray-600 mb-4">
+                            Researched Kapferer Brand Identity Prism and analysed Revolut's brand extension.
+                        </p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Brand Identity</span>
-                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Brand Extension</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">Branding</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">Analysis</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">Strategy</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Thesis on Supply Chain -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md work-card">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3a8dd22?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" 
-                             alt="Project 4" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-purple-600 bg-opacity-75 flex items-center justify-center opacity-0 work-overlay">
-                            <a href="#" class="text-white font-semibold px-4 py-2 border border-white rounded hover:bg-white hover:text-purple-600 transition">View Project</a>
-                        </div>
-                    </div>
+                
+                <div class="project-card animate-on-scroll bg-gray-50 rounded-xl overflow-hidden shadow-md transition duration-300">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Textile Supply Chain Thesis</h3>
-                        <p class="text-gray-600 mb-4">Studied supply chain integration, e-procurement, and TQM in Pakistan's textile sector</p>
+                        <h3 class="text-xl font-bold mb-2 text-dark">Thesis on Supply Chain Performance</h3>
+                        <p class="text-gray-600 mb-4">
+                            Studied the integration of supply chains, e-procurement, and the impact of total quality management in Pakistan's textile sector.
+                        </p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Supply Chain</span>
-                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">E-Procurement</span>
-                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">TQM</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">Supply Chain</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">Research</span>
+                            <span class="bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-full text-sm">Textile Industry</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Marketing Research Project -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md work-card">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" 
-                             alt="Project 5" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-purple-600 bg-opacity-75 flex items-center justify-center opacity-0 work-overlay">
-                            <a href="#" class="text-white font-semibold px-4 py-2 border border-white rounded hover:bg-white hover:text-purple-600 transition">View Project</a>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Portable Refrigerator Marketing</h3>
-                        <p class="text-gray-600 mb-4">Developed a prototype and 4P marketing strategy for a portable refrigerator</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">4P Strategy</span>
-                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Product Positioning</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="#" class="px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition inline-block">
-                    View More Projects
-                </a>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16 section-title">Get In Touch</h2>
+    <section id="contact" class="py-16 bg-primary bg-opacity-5">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title animate-on-scroll">Get In Touch</h2>
             
-            <div class="flex flex-col md:flex-row gap-12 max-w-6xl mx-auto">
-                <div class="md:w-1/2">
-                    <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
-                    <p class="text-gray-600 mb-6">Ready to discuss your next marketing or supply chain project? Reach out and let's create something amazing together.</p>
-                    
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <div class="text-purple-600 mr-4 mt-1">
-                                <i class="fas fa-envelope text-xl"></i>
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-2xl overflow-hidden animate-on-scroll">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-gradient-to-br from-primary to-secondary p-8 text-white relative overflow-hidden">
+                        <div class="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-white bg-opacity-10"></div>
+                        <div class="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-white bg-opacity-10"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-4">Let's Connect!</h3>
+                            <p class="mb-6 opacity-90">I'm always open to discussing new opportunities, projects, or collaborations.</p>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-center group">
+                                    <div class="w-12 h-12 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-4 group-hover:bg-opacity-30 transition duration-300">
+                                        <i class="fas fa-map-marker-alt text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Location</p>
+                                        <p>Paisley, UK</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center group">
+                                    <div class="w-12 h-12 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-4 group-hover:bg-opacity-30 transition duration-300">
+                                        <i class="fas fa-phone text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Phone</p>
+                                        <a href="tel:+447728974631" class="hover:underline">+44 7728974631</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center group">
+                                    <div class="w-12 h-12 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-4 group-hover:bg-opacity-30 transition duration-300">
+                                        <i class="fas fa-envelope text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Email</p>
+                                        <a href="mailto:taha96hassan@outlook.com" class="hover:underline">taha96hassan@outlook.com</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="font-medium">Email</h4>
-                                <p class="text-gray-600"><a href="mailto:taha96hassan@outlook.com" class="hover:underline">taha96hassan@outlook.com</a></p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="text-purple-600 mr-4 mt-1">
-                                <i class="fas fa-phone-alt text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium">Phone</h4>
-                                <p class="text-gray-600">+44 7728974631</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="text-purple-600 mr-4 mt-1">
-                                <i class="fas fa-map-marker-alt text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium">Location</h4>
-                                <p class="text-gray-600">Paisley, UK</p>
+                            
+                            <div class="mt-10">
+                                <h4 class="text-xl font-bold mb-4">Follow Me</h4>
+                                <div class="flex space-x-4">
+                                    <a href="https://www.linkedin.com/in/tahahassan12121996" target="_blank" class="w-12 h-12 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition transform hover:-translate-y-1">
+                                        <i class="fab fa-linkedin-in text-xl"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="mt-8">
-                        <h4 class="font-medium mb-4">Follow My Marketing Insights</h4>
-                        <div class="flex space-x-4">
-                            <a href="https://www.linkedin.com/in/tahahassan12121996" class="text-gray-600 hover:text-purple-600 transition">
-                                <i class="fab fa-linkedin fa-lg"></i>
-                            </a>
-                            <a href="#" class="text-gray-600 hover:text-purple-600 transition">
-                                <i class="fab fa-twitter fa-lg"></i>
-                            </a>
-                            <a href="#" class="text-gray-600 hover:text-purple-600 transition">
-                                <i class="fab fa-instagram fa-lg"></i>
-                            </a>
-                            <a href="#" class="text-gray-600 hover:text-purple-600 transition">
-                                <i class="fab fa-tiktok fa-lg"></i>
-                            </a>
+                    <div class="md:w-1/2 p-8 flex flex-col justify-center">
+                        <div class="text-center mb-8">
+                            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-primary bg-opacity-10 flex items-center justify-center text-primary text-3xl animate-pulse-slow">
+                                <i class="fas fa-paper-plane"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2 text-dark">Ready to Start a Conversation?</h3>
+                            <p class="text-gray-600">Drop me a message through any of the contact methods listed here.</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-gray-50 p-4 rounded-lg text-center transition transform hover:scale-105 hover:shadow-md">
+                                <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-primary bg-opacity-10 text-primary flex items-center justify-center">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <a href="mailto:taha96hassan@outlook.com" class="text-primary font-medium hover:underline">Email Me</a>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg text-center transition transform hover:scale-105 hover:shadow-md">
+                                <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-primary bg-opacity-10 text-primary flex items-center justify-center">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <a href="tel:+447728974631" class="text-primary font-medium hover:underline">Call Me</a>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg text-center transition transform hover:scale-105 hover:shadow-md">
+                                <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-primary bg-opacity-10 text-primary flex items-center justify-center">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </div>
+                                <a href="https://www.linkedin.com/in/tahahassan12121996" target="_blank" class="text-primary font-medium hover:underline">LinkedIn</a>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg text-center transition transform hover:scale-105 hover:shadow-md">
+                                <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-primary bg-opacity-10 text-primary flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <p class="text-primary font-medium">Paisley, UK</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="md:w-1/2">
-                    <form class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-gray-700 mb-1">Your Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-                        </div>
-                        
-                        <div>
-                            <label for="email" class="block text-gray-700 mb-1">Your Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-                        </div>
-                        
-                        <div>
-                            <label for="subject" class="block text-gray-700 mb-1">Subject</label>
-                            <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-                        </div>
-                        
-                        <div>
-                            <label for="message" class="block text-gray-700 mb-1">Message</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="w-full px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
-                            Send Message
-                        </button>
-                    </form>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <a href="#" class="text-2xl font-bold text-purple-400">TahaHassan</a>
-                    <p class="text-gray-400 mt-1">© 2025 All Rights Reserved</p>
-                </div>
-                
-                <div class="flex space-x-6">
-                    <a href="https://www.linkedin.com/in/tahahassan12121996" class="text-gray-400 hover:text-white transition">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">
-                        <i class="fab fa-tiktok"></i>
-                    </a>
-                </div>
-            </div>
+    <footer class="bg-dark text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2023 Taha Hassan. All rights reserved.</p>
+            <p class="mt-2 text-gray-400">Digital Marketing Professional</p>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Smooth scrolling for all links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
                 });
-                
-                // Close mobile menu if open
-                mobileMenu.classList.add('hidden');
+            }, {
+                threshold: 0.1
             });
-        });
-        
-        // Add fade-in animation to elements when they come into view
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const fadeInObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                }
+            
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
             });
-        }, { threshold: 0.1 });
-        
-        fadeElements.forEach(el => {
-            fadeInObserver.observe(el);
-        });
-        
-        // Simulate CV download
-        document.querySelector('[href="./taha_CV.pdf"]').addEventListener('click', function(e) {
-            e.preventDefault();
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
         });
     </script>
 </body>
