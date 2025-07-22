@@ -1,10 +1,550 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Supply Chain Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taha Hassan | Supply Chain Professional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0D9488',   // A professional, deep teal
+                        secondary: '#2DD4BF', // A brighter, vibrant cyan-teal for accents
+                        dark: '#1E293B',      // A dark slate blue
+                        light: '#F8FAFC'      // A very light, cool gray
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'breathe': 'breathe 4s ease-in-out infinite',
+                        'background-pan': 'backgroundPan 15s linear infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(25px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        breathe: {
+                          '0%, 100%': { transform: 'scale(1)', boxShadow: '0 0 10px rgba(13, 148, 136, 0.3)' },
+                          '50%': { transform: 'scale(1.05)', boxShadow: '0 0 25px rgba(13, 148, 136, 0.5)' },
+                        },
+                        backgroundPan: {
+                          '0%': { backgroundPosition: '0% 50%' },
+                          '50%': { backgroundPosition: '100% 50%' },
+                          '100%': { backgroundPosition: '0% 50%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light, #F8FAFC);
+            color: #333;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #0D9488, #2DD4BF);
+            border-radius: 2px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #0D9488;
+            border: 3px solid #F8FAFC;
+            z-index: 2;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 8px;
+            width: 2px;
+            height: calc(100% + 30px);
+            background-color: #e2e8f0;
+            z-index: 1;
+        }
+        
+        .timeline-item:last-child::after { display: none; }
+        
+        .skill-progress {
+            background: linear-gradient(90deg, #0D9488, #2DD4BF);
+        }
+        
+        .project-card, .cert-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .project-card:hover, .cert-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-gradient-bg {
+            background: linear-gradient(270deg, rgba(13, 148, 136, 0.05), rgba(45, 212, 191, 0.05), rgba(248, 250, 252, 0.1));
+            background-size: 200% 200%;
+            animation: backgroundPan 15s ease-in-out infinite;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
 </head>
-<body>
-  <h1>Welcome to the Supply Chain Page</h1>
-  <p>This is a subpage on my GitHub site.</p>
+<body class="bg-light text-dark">
+    <!-- Header/Navigation -->
+    <header class="fixed w-full z-50 bg-white/80 backdrop-blur-sm shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#home" class="flex items-center">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-lg">
+                    <span class="text-white font-bold text-xl">TH</span>
+                </div>
+                <h1 class="ml-3 text-xl font-bold text-dark">Taha <span class="text-primary">Hassan</span></h1>
+            </a>
+            
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8 text-base font-medium">
+                    <li><a href="#home" class="text-dark hover:text-primary transition">Home</a></li>
+                    <li><a href="#about" class="text-dark hover:text-primary transition">About</a></li>
+                    <li><a href="#experience" class="text-dark hover:text-primary transition">Experience</a></li>
+                    <li><a href="#projects" class="text-dark hover:text-primary transition">Projects</a></li>
+                    <li><a href="#education" class="text-dark hover:text-primary transition">Education</a></li>
+                    <li><a href="#contact" class="text-dark hover:text-primary transition">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <button class="md:hidden text-dark">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 hero-gradient-bg">
+        <div class="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center gap-8">
+            <div class="md:w-3/5 text-center md:text-left animate-on-scroll">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 text-dark leading-tight">
+                    Hi, I'm <span class="text-primary">Taha Hassan</span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-slate-600">
+                    Supply Chain & Logistics Specialist
+                </h2>
+                <p class="text-lg mb-8 text-slate-500 max-w-2xl mx-auto md:mx-0">
+                    Driven and analytical professional with a background in Business Management and a passion for optimizing supply chain operations. Experienced in logistics, procurement, and data-driven strategy to enhance efficiency and reduce costs.
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                    <a href="#contact" class="px-8 py-3 bg-primary text-white font-bold rounded-full shadow-lg hover:bg-secondary transition transform hover:-translate-y-1 duration-300">
+                        Get In Touch
+                    </a>
+                    <a href="#projects" class="px-8 py-3 bg-white text-primary font-bold rounded-full border-2 border-primary shadow-lg hover:bg-primary/5 transition transform hover:-translate-y-1 duration-300">
+                        View My Work
+                    </a>
+                </div>
+            </div>
+            
+            <div class="md:w-2/5 flex justify-center animate-on-scroll">
+                <div class="relative">
+                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-2xl animate-breathe">
+                        <img 
+                            src="profile_pic.jpeg" 
+                            alt="Profile of Taha Hassan" 
+                            class="object-cover w-full h-full"
+                        />
+                    </div>
+                    <div class="absolute -bottom-2 -right-2 bg-secondary text-white py-2 px-5 rounded-full shadow-lg floating flex items-center gap-2">
+                        <span class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-200 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-300"></span>
+                        </span>
+                        <span>Seeking Opportunities</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title">About Me</h2>
+            <div class="grid md:grid-cols-5 gap-12 items-start">
+                <div class="md:col-span-3 bg-light p-8 rounded-xl shadow-lg animate-on-scroll">
+                    <h3 class="text-2xl font-bold mb-4 text-dark">Professional Summary</h3>
+                    <p class="mb-6 text-slate-600 leading-relaxed">
+                        A detail-oriented and ambitious professional pursuing an MSc in Digital Marketing, with a strong academic foundation in Business Administration and Supply Chain Management. My practical experience at DHL and other organizations has equipped me with hands-on skills in <strong class="text-primary">logistics coordination, procurement, and relationship management.</strong> I am adept at using data to analyze performance, identify inefficiencies, and implement strategies that drive operational excellence and business growth.
+                    </p>
+                    
+                    <h3 class="text-2xl font-bold mb-4 text-dark">Career Ambition</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        My goal is to secure a challenging role in a forward-thinking organization where I can apply my expertise in supply chain management and analytics. I aim to contribute to optimizing logistics networks, streamlining procurement processes, and leveraging technology to create resilient and efficient supply chains that deliver a competitive advantage.
+                    </p>
+                </div>
+                <div class="md:col-span-2 bg-light p-8 rounded-xl shadow-lg animate-on-scroll" style="transition-delay: 200ms;">
+                    <h3 class="text-2xl font-bold mb-6 text-dark">Core Competencies</h3>
+                    <div class="space-y-5">
+                        <div>
+                            <p class="font-semibold mb-1 flex justify-between"><span>Logistics Management</span> <span>85%</span></p>
+                            <div class="h-2 bg-slate-200 rounded-full overflow-hidden"><div class="h-full skill-progress rounded-full" style="width: 85%;"></div></div>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-1 flex justify-between"><span>Procurement & Sourcing</span> <span>80%</span></p>
+                            <div class="h-2 bg-slate-200 rounded-full overflow-hidden"><div class="h-full skill-progress rounded-full" style="width: 80%;"></div></div>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-1 flex justify-between"><span>Inventory Control</span> <span>75%</span></p>
+                            <div class="h-2 bg-slate-200 rounded-full overflow-hidden"><div class="h-full skill-progress rounded-full" style="width: 75%;"></div></div>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-1 flex justify-between"><span>Data Analysis & Forecasting</span> <span>70%</span></p>
+                            <div class="h-2 bg-slate-200 rounded-full overflow-hidden"><div class="h-full skill-progress rounded-full" style="width: 70%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+                <div class="bg-primary/10 p-6 rounded-lg text-center animate-on-scroll" style="transition-delay: 100ms;">
+                    <i class="fas fa-truck-fast text-4xl text-primary mb-3"></i>
+                    <p class="font-semibold text-dark">Logistics</p>
+                </div>
+                <div class="bg-primary/10 p-6 rounded-lg text-center animate-on-scroll" style="transition-delay: 200ms;">
+                    <i class="fas fa-boxes-stacked text-4xl text-primary mb-3"></i>
+                    <p class="font-semibold text-dark">Inventory</p>
+                </div>
+                <div class="bg-primary/10 p-6 rounded-lg text-center animate-on-scroll" style="transition-delay: 300ms;">
+                    <i class="fas fa-chart-pie text-4xl text-primary mb-3"></i>
+                    <p class="font-semibold text-dark">Analytics</p>
+                </div>
+                <div class="bg-primary/10 p-6 rounded-lg text-center animate-on-scroll" style="transition-delay: 400ms;">
+                    <i class="fas fa-gears text-4xl text-primary mb-3"></i>
+                    <p class="font-semibold text-dark">Optimization</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-light">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title">Work Experience</h2>
+            <div class="max-w-4xl mx-auto relative">
+                <div class="absolute left-3 md:left-1/2 top-0 h-full w-0.5 bg-slate-200"></div>
+                
+                <div class="mb-12 flex md:justify-end animate-on-scroll">
+                    <div class="md:w-5/12 relative">
+                        <div class="absolute -left-5 md:-left-6 top-2 w-4 h-4 rounded-full bg-primary border-2 border-white"></div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <div class="flex flex-wrap justify-between items-center mb-1">
+                                <h3 class="text-xl font-bold text-dark">DHL Global Forwarding</h3>
+                                <span class="text-sm font-medium text-primary">2023 - 2024</span>
+                            </div>
+                            <p class="text-lg font-semibold text-slate-600 mb-3">Officer OMS</p>
+                            <ul class="list-disc pl-5 space-y-2 text-slate-500">
+                                <li>Coordinated with carriers to ensure timely and cost-effective transportation of goods, improving on-time delivery rates.</li>
+                                <li>Managed and maintained key relationships with carriers and vendors, negotiating terms to optimize service levels.</li>
+                                <li>Oversaw cargo documentation, ensuring accuracy for weight, volume, and customs compliance.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-12 flex md:justify-start animate-on-scroll">
+                    <div class="md:w-5/12 relative md:text-right">
+                        <div class="absolute -left-5 md:left-auto md:-right-6 top-2 w-4 h-4 rounded-full bg-primary border-2 border-white"></div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <div class="flex flex-col md:items-end mb-1">
+                                <h3 class="text-xl font-bold text-dark">NZ Enterprises</h3>
+                                <span class="text-sm font-medium text-primary">2022 - 2023</span>
+                            </div>
+                            <p class="text-lg font-semibold text-slate-600 mb-3">Assistant Manager</p>
+                             <ul class="list-disc pl-5 space-y-2 text-slate-500 text-left">
+                                <li>Managed client relationships, improving customer retention through proactive communication and issue resolution.</li>
+                                <li>Monitored KPIs for operational performance and managed budgets to ensure profitability.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex md:justify-end animate-on-scroll">
+                    <div class="md:w-5/12 relative">
+                        <div class="absolute -left-5 md:-left-6 top-2 w-4 h-4 rounded-full bg-primary border-2 border-white"></div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <div class="flex flex-wrap justify-between items-center mb-1">
+                                <h3 class="text-xl font-bold text-dark">Workers Education & Research Org.</h3>
+                                <span class="text-sm font-medium text-primary">2021 - 2022</span>
+                            </div>
+                            <p class="text-lg font-semibold text-slate-600 mb-3">Assistant Manager</p>
+                             <ul class="list-disc pl-5 space-y-2 text-slate-500">
+                                <li>Analyzed sales and operational data to create accurate forecasts for resource planning.</li>
+                                <li>Evaluated existing logistics and marketing programs, recommending improvements that increased efficiency.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title">Key Projects & Research</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                
+                <div class="project-card animate-on-scroll bg-light rounded-xl overflow-hidden shadow-md">
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2 text-dark">Thesis: Supply Chain Performance in Textile Sector</h3>
+                        <p class="text-slate-600 mb-4">
+                            Conducted in-depth research on the impact of supply chain integration, e-procurement, and TQM on the performance of Pakistan's textile industry, providing actionable insights for optimization.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">Research</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">TQM</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">E-Procurement</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card animate-on-scroll bg-light rounded-xl overflow-hidden shadow-md" style="transition-delay: 200ms;">
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2 text-dark">Logistics Network Optimization Analysis</h3>
+                        <p class="text-slate-600 mb-4">
+                            Analyzed carrier performance data and shipping routes for DHL to identify potential cost savings and efficiency improvements. My recommendations contributed to a more streamlined routing process.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">Logistics</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">Data Analysis</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">Cost Reduction</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card animate-on-scroll bg-light rounded-xl overflow-hidden shadow-md" style="transition-delay: 300ms;">
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2 text-dark">Procurement Strategy Development</h3>
+                        <p class="text-slate-600 mb-4">
+                            Developed and implemented a vendor evaluation framework at NZ Enterprises, establishing KPIs for supplier performance which improved service reliability and relationship management.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">Procurement</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">Vendor Management</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">KPIs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card animate-on-scroll bg-light rounded-xl overflow-hidden shadow-md" style="transition-delay: 400ms;">
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2 text-dark">Demand Forecasting Improvement</h3>
+                        <p class="text-slate-600 mb-4">
+                            Utilized historical sales data and market trends to build more accurate demand forecasting models, leading to better inventory planning and reduced stockout incidents.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">Forecasting</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">Inventory</span>
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">Sales Analysis</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications Section -->
+    <section id="education" class="py-20 bg-light">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title">Education & Certifications</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Education Timeline -->
+                <div class="animate-on-scroll">
+                    <h3 class="text-2xl font-bold mb-8 text-center md:text-left">Academic Journey</h3>
+                    <div class="relative pl-8">
+                        <div class="timeline-item">
+                            <h4 class="text-lg font-bold text-dark">M.Sc. Digital Marketing</h4>
+                            <p class="font-semibold text-primary mb-1">University of West Scotland (2024-2025)</p>
+                            <p class="text-slate-500">Focus on data analytics, branding, and technology's role in modern business strategy.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4 class="text-lg font-bold text-dark">Master Of Business Administration</h4>
+                            <p class="font-semibold text-primary mb-1">Bahria University, Karachi (2021-2022)</p>
+                            <p class="text-slate-500">Specialized courses in Inventory Management, Strategic Procurement, and Green Supply Chain.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4 class="text-lg font-bold text-dark">Bachelor in Business Management</h4>
+                            <p class="font-semibold text-primary mb-1">Bahria University, Karachi (2017-2021)</p>
+                            <p class="text-slate-500">Foundational knowledge in Brand Management, Distribution, and Supply Chain Management.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Certifications -->
+                <div class="animate-on-scroll" style="transition-delay: 200ms;">
+                    <h3 class="text-2xl font-bold mb-8 text-center md:text-left">Professional Development</h3>
+                    <div class="space-y-4">
+                        <div class="cert-card bg-white p-4 rounded-lg shadow-md flex items-center gap-4">
+                            <div class="w-12 h-12 flex-shrink-0 bg-primary/10 rounded-lg flex items-center justify-center"><i class="fas fa-certificate text-2xl text-primary"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-dark">Excel Skills for Business: Essentials</h4>
+                                <p class="text-sm text-slate-500">Macquarie University | <a href="https://coursera.org/account/accomplishments/verify/XQE3FH4RQ3J2" target="_blank" class="text-primary hover:underline">Verify</a></p>
+                            </div>
+                        </div>
+                        <div class="cert-card bg-white p-4 rounded-lg shadow-md flex items-center gap-4">
+                            <div class="w-12 h-12 flex-shrink-0 bg-primary/10 rounded-lg flex items-center justify-center"><i class="fas fa-certificate text-2xl text-primary"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-dark">Leading Teams: Developing as a Leader</h4>
+                                <p class="text-sm text-slate-500">University of Illinois | <a href="https://www.coursera.org/account/accomplishments/verify/3KQL67LJBXM6" target="_blank" class="text-primary hover:underline">Verify</a></p>
+                            </div>
+                        </div>
+                        <div class="cert-card bg-white p-4 rounded-lg shadow-md flex items-center gap-4 opacity-70">
+                            <div class="w-12 h-12 flex-shrink-0 bg-slate-200 rounded-lg flex items-center justify-center"><i class="fas fa-certificate text-2xl text-slate-500"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-dark">APICS Certified in Logistics, Transportation and Distribution (CLTD)</h4>
+                                <p class="text-sm text-slate-500 italic">In Progress / Future Goal</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title animate-on-scroll">Get In Touch</h2>
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col md:flex-row animate-on-scroll">
+                <div class="md:w-1/2 bg-gradient-to-br from-primary to-secondary p-8 text-white relative">
+                    <h3 class="text-3xl font-bold mb-4">Let's Connect</h3>
+                    <p class="mb-8 opacity-90">I'm actively seeking new opportunities and am eager to discuss how my skills in supply chain and logistics can benefit your organization.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-map-marker-alt text-xl w-6 text-center"></i>
+                            <span>Paisley, UK</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-phone text-xl w-6 text-center"></i>
+                            <a href="tel:+447728974631" class="hover:underline">+44 7728974631</a>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-envelope text-xl w-6 text-center"></i>
+                            <a href="mailto:taha96hassan@outlook.com" class="hover:underline">taha96hassan@outlook.com</a>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <i class="fab fa-linkedin text-xl w-6 text-center"></i>
+                            <a href="https://www.linkedin.com/in/tahahassan12121996" target="_blank" class="hover:underline">LinkedIn Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 p-8 flex flex-col justify-center items-center bg-light">
+                     <div class="text-center">
+                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center text-primary text-4xl animate-breathe" style="animation-duration: 3s;">
+                            <i class="fas fa-paper-plane"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2 text-dark">Ready for a Conversation?</h3>
+                        <p class="text-slate-600">Send me a message or connect with me on LinkedIn.</p>
+                        <a href="https://www.linkedin.com/in/tahahassan12121996" target="_blank" class="mt-6 inline-block px-8 py-3 bg-primary text-white font-bold rounded-full shadow-lg hover:bg-secondary transition transform hover:-translate-y-1 duration-300">
+                           Connect on LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2024 Taha Hassan. All rights reserved.</p>
+            <p class="mt-1 text-slate-400">Crafted with a focus on professional presentation.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Apply staggered delay for elements with the same parent
+                        const delay = entry.target.dataset.delay || 0;
+                        setTimeout(() => {
+                           entry.target.classList.add('visible');
+                        }, delay * 100);
+                        observer.unobserve(entry.target); // Optional: stop observing after animation
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            document.querySelectorAll('.animate-on-scroll').forEach((el, index) => {
+                // Add a data-delay attribute for staggering effect if needed
+                // el.dataset.delay = index;
+                observer.observe(el);
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70, // Adjusted for header height
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
