@@ -15,10 +15,12 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3E0097', // VividPurple
-                        secondary: '#5a21b4', // A lighter purple for gradients/hovers
-                        dark: '#2E2E2E', // SlateGrey
-                        light: '#666666', // LightGrey for body text
+                        primary: '#3E0097',      // VividPurple (Used for accents)
+                        secondary: '#5a21b4',    // Lighter purple (Used for accents)
+                        'hero-start': '#FFFFFF', // White for hero background
+                        'hero-end': '#F0F2F5',   // Very light gray for hero background
+                        dark: '#2E2E2E',         // SlateGrey
+                        light: '#666666',        // LightGrey for body text
                         background: '#F8F9FA'
                     },
                     animation: {
@@ -64,7 +66,7 @@
             transform: translateX(-50%);
             width: 60px;
             height: 4px;
-            background: linear-gradient(90deg, #3E0097, #5a21b4); /* New primary gradient */
+            background: linear-gradient(90deg, #3E0097, #5a21b4); /* Primary gradient for accents */
             border-radius: 2px;
         }
         
@@ -148,36 +150,36 @@
 
     <main>
         <!-- ======== HERO SECTION - REVAMPED ======== -->
-        <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
             <!-- Animated Gradient Background -->
-            <div class="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-background bg-[length:200%_200%] animate-gradient-bg -z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-hero-start to-hero-end bg-[length:200%_200%] animate-gradient-bg -z-10"></div>
             
             <div class="container mx-auto px-4 text-center md:text-left">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <!-- Left Side: Text Content -->
                     <div class="animate-fade-in">
-                        <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4">
+                        <h1 class="text-4xl md:text-6xl font-extrabold text-dark mb-4">
                             Taha Hassan
                         </h1>
-                        <h2 class="text-2xl md:text-3xl font-semibold text-white/90 mb-6 h-10">
+                        <h2 class="text-2xl md:text-3xl font-semibold text-dark/90 mb-6 h-10">
                             <span id="typed-text"></span><span class="typed-cursor">|</span>
                         </h2>
-                        <p class="text-lg text-white/80 mb-8 max-w-lg mx-auto md:mx-0">
+                        <p class="text-lg text-light mb-8 max-w-lg mx-auto md:mx-0">
                             Results-driven marketer skilled in crafting data-informed campaigns that boost engagement and deliver measurable growth.
                         </p>
 
                         <!-- Social Links -->
                         <div class="flex justify-center md:justify-start space-x-6 mb-10">
-                            <a href="https://www.linkedin.com/in/tahahassan12121996" target="_blank" class="text-white/80 hover:text-white transition transform hover:scale-110 text-3xl"><i class="fab fa-linkedin"></i></a>
-                            <a href="mailto:taha96hassan@outlook.com" class="text-white/80 hover:text-white transition transform hover:scale-110 text-3xl"><i class="fas fa-envelope"></i></a>
+                            <a href="https://www.linkedin.com/in/tahahassan12121996" target="_blank" class="text-dark/80 hover:text-primary transition transform hover:scale-110 text-3xl"><i class="fab fa-linkedin"></i></a>
+                            <a href="mailto:taha96hassan@outlook.com" class="text-dark/80 hover:text-primary transition transform hover:scale-110 text-3xl"><i class="fas fa-envelope"></i></a>
                         </div>
                         
                         <!-- CTA Buttons -->
                         <div class="flex flex-wrap justify-center md:justify-start gap-4">
-                            <a href="#contact" class="px-8 py-3 bg-white text-primary font-bold rounded-full shadow-lg hover:bg-gray-200 transition transform hover:-translate-y-1">
+                            <a href="#contact" class="px-8 py-3 bg-primary text-white font-bold rounded-full shadow-lg hover:bg-secondary transition transform hover:-translate-y-1">
                                 Get In Touch
                             </a>
-                            <a href="Taha_Hassan_Digital_Marketing.pdf" target="_blank" class="px-8 py-3 bg-transparent text-white font-medium rounded-full border-2 border-white/80 shadow-lg hover:bg-white/10 transition transform hover:-translate-y-1">
+                            <a href="Taha_Hassan_Digital_Marketing.pdf" target="_blank" class="px-8 py-3 bg-transparent text-primary font-medium rounded-full border-2 border-primary shadow-lg hover:bg-primary hover:text-white transition transform hover:-translate-y-1">
                                 Download CV
                             </a>
                         </div>
@@ -187,23 +189,23 @@
                     <div class="flex flex-col items-center gap-8">
                         <!-- Profile Image with Gradient Ring -->
                         <div class="relative w-64 h-64 md:w-80 md:h-80 flex items-center justify-center animate-fade-in">
-                            <div class="absolute inset-0 rounded-full bg-gradient-to-br from-white/50 to-white/10 animate-spin-slow"></div>
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary/50 to-secondary/20 animate-spin-slow"></div>
                             <img src="profile_pic.jpeg" alt="Taha Hassan" class="w-[90%] h-[90%] object-cover rounded-full shadow-2xl"/>
                         </div>
                         
                         <!-- Key Metric Cards -->
-                        <div class="grid grid-cols-3 gap-4 text-white w-full max-w-sm">
-                             <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg text-center animate-slide-up">
-                                <p class="text-2xl font-bold">3+</p>
-                                <p class="text-xs">Years Experience</p>
+                        <div class="grid grid-cols-3 gap-4 text-dark w-full max-w-sm">
+                             <div class="bg-white/60 backdrop-blur-sm p-4 rounded-lg text-center shadow-md animate-slide-up">
+                                <p class="text-2xl font-bold text-primary">3+</p>
+                                <p class="text-xs text-light">Years Experience</p>
                             </div>
-                            <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg text-center animate-slide-up" style="animation-delay: 0.2s;">
-                                <p class="text-2xl font-bold">40%+</p>
-                                <p class="text-xs">Organic Growth</p>
+                            <div class="bg-white/60 backdrop-blur-sm p-4 rounded-lg text-center shadow-md animate-slide-up" style="animation-delay: 0.2s;">
+                                <p class="text-2xl font-bold text-primary">40%+</p>
+                                <p class="text-xs text-light">Organic Growth</p>
                             </div>
-                            <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg text-center animate-slide-up" style="animation-delay: 0.4s;">
-                                <p class="text-2xl font-bold">35%+</p>
-                                <p class="text-xs">Lead Generation</p>
+                            <div class="bg-white/60 backdrop-blur-sm p-4 rounded-lg text-center shadow-md animate-slide-up" style="animation-delay: 0.4s;">
+                                <p class="text-2xl font-bold text-primary">35%+</p>
+                                <p class="text-xs text-light">Lead Generation</p>
                             </div>
                         </div>
                     </div>
